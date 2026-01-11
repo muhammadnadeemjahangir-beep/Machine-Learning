@@ -1,0 +1,887 @@
+{
+ "cells": [
+  {
+   "cell_type": "code",
+   "execution_count": 1,
+   "id": "ffa077da-ac25-4b2c-b834-ee31f2431453",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "#2nd Session\n",
+    "import pandas as pd"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 4,
+   "id": "ce8e58c6-3748-4128-bc1d-9d5501cd441d",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "df = pd.read_csv('Salary_Data.csv')"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 5,
+   "id": "d0dbede5-7741-4331-af34-24293c4a5261",
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead th {\n",
+       "        text-align: right;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr style=\"text-align: right;\">\n",
+       "      <th></th>\n",
+       "      <th>YearsExperience</th>\n",
+       "      <th>Salary</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>0</th>\n",
+       "      <td>1.1</td>\n",
+       "      <td>39343.0</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>1</th>\n",
+       "      <td>1.3</td>\n",
+       "      <td>46205.0</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>2</th>\n",
+       "      <td>1.5</td>\n",
+       "      <td>37731.0</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>3</th>\n",
+       "      <td>2.0</td>\n",
+       "      <td>43525.0</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>4</th>\n",
+       "      <td>2.2</td>\n",
+       "      <td>39891.0</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "   YearsExperience   Salary\n",
+       "0              1.1  39343.0\n",
+       "1              1.3  46205.0\n",
+       "2              1.5  37731.0\n",
+       "3              2.0  43525.0\n",
+       "4              2.2  39891.0"
+      ]
+     },
+     "execution_count": 5,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "df.head()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 6,
+   "id": "65925910-fbd0-4f79-b1e8-3ac4aac30337",
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead th {\n",
+       "        text-align: right;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr style=\"text-align: right;\">\n",
+       "      <th></th>\n",
+       "      <th>YearsExperience</th>\n",
+       "      <th>Salary</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>11</th>\n",
+       "      <td>4.0</td>\n",
+       "      <td>55794.0</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>22</th>\n",
+       "      <td>7.9</td>\n",
+       "      <td>101302.0</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>20</th>\n",
+       "      <td>6.8</td>\n",
+       "      <td>91738.0</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "    YearsExperience    Salary\n",
+       "11              4.0   55794.0\n",
+       "22              7.9  101302.0\n",
+       "20              6.8   91738.0"
+      ]
+     },
+     "execution_count": 6,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "df.sample(3)\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 7,
+   "id": "a526cd2a-14f5-459c-945d-602cea49ad12",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "<class 'pandas.core.frame.DataFrame'>\n",
+      "RangeIndex: 30 entries, 0 to 29\n",
+      "Data columns (total 2 columns):\n",
+      " #   Column           Non-Null Count  Dtype  \n",
+      "---  ------           --------------  -----  \n",
+      " 0   YearsExperience  30 non-null     float64\n",
+      " 1   Salary           30 non-null     float64\n",
+      "dtypes: float64(2)\n",
+      "memory usage: 612.0 bytes\n"
+     ]
+    }
+   ],
+   "source": [
+    "df.info()\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 9,
+   "id": "cc95802e-b9c8-4b67-b549-aebe471e9556",
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "(30, 2)"
+      ]
+     },
+     "execution_count": 9,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "df.shape"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 10,
+   "id": "2b2adeb2-cb0e-434b-a1e0-ab830563404d",
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "30"
+      ]
+     },
+     "execution_count": 10,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "df.shape[0]"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 11,
+   "id": "3b6a80ce-aa9e-43fc-97a5-6cc1911e86f5",
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "2"
+      ]
+     },
+     "execution_count": 11,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "df.shape[1]"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 12,
+   "id": "3ec7bf46-9ae8-4309-85a6-330af772dee1",
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "Index(['YearsExperience', 'Salary'], dtype='object')"
+      ]
+     },
+     "execution_count": 12,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "df.columns #this will columns name"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 14,
+   "id": "0d64f7ba-6e3a-44ca-b295-47566ee87aeb",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "<class 'pandas.core.frame.DataFrame'>\n",
+      "RangeIndex: 30 entries, 0 to 29\n",
+      "Data columns (total 2 columns):\n",
+      " #   Column           Non-Null Count  Dtype  \n",
+      "---  ------           --------------  -----  \n",
+      " 0   YearsExperience  30 non-null     float64\n",
+      " 1   Salary           30 non-null     float64\n",
+      "dtypes: float64(2)\n",
+      "memory usage: 612.0 bytes\n"
+     ]
+    }
+   ],
+   "source": [
+    "df.info()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 16,
+   "id": "992467ef-1dfd-4d15-ba69-c4a17bd2951c",
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead th {\n",
+       "        text-align: right;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr style=\"text-align: right;\">\n",
+       "      <th></th>\n",
+       "      <th>YearsExperience</th>\n",
+       "      <th>Salary</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>count</th>\n",
+       "      <td>30.000000</td>\n",
+       "      <td>30.000000</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>mean</th>\n",
+       "      <td>5.313333</td>\n",
+       "      <td>76003.000000</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>std</th>\n",
+       "      <td>2.837888</td>\n",
+       "      <td>27414.429785</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>min</th>\n",
+       "      <td>1.100000</td>\n",
+       "      <td>37731.000000</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>25%</th>\n",
+       "      <td>3.200000</td>\n",
+       "      <td>56720.750000</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>50%</th>\n",
+       "      <td>4.700000</td>\n",
+       "      <td>65237.000000</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>75%</th>\n",
+       "      <td>7.700000</td>\n",
+       "      <td>100544.750000</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>max</th>\n",
+       "      <td>10.500000</td>\n",
+       "      <td>122391.000000</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "       YearsExperience         Salary\n",
+       "count        30.000000      30.000000\n",
+       "mean          5.313333   76003.000000\n",
+       "std           2.837888   27414.429785\n",
+       "min           1.100000   37731.000000\n",
+       "25%           3.200000   56720.750000\n",
+       "50%           4.700000   65237.000000\n",
+       "75%           7.700000  100544.750000\n",
+       "max          10.500000  122391.000000"
+      ]
+     },
+     "execution_count": 16,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "df.describe()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 17,
+   "id": "e97b8de3-2007-4994-bc40-d881751b9468",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "x = df.drop(columns=['Salary'])"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 18,
+   "id": "e943a61c-2764-4dbe-8cde-300bb30b0f66",
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead th {\n",
+       "        text-align: right;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr style=\"text-align: right;\">\n",
+       "      <th></th>\n",
+       "      <th>YearsExperience</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>0</th>\n",
+       "      <td>1.1</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>1</th>\n",
+       "      <td>1.3</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>2</th>\n",
+       "      <td>1.5</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>3</th>\n",
+       "      <td>2.0</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>4</th>\n",
+       "      <td>2.2</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>5</th>\n",
+       "      <td>2.9</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>6</th>\n",
+       "      <td>3.0</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>7</th>\n",
+       "      <td>3.2</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>8</th>\n",
+       "      <td>3.2</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>9</th>\n",
+       "      <td>3.7</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>10</th>\n",
+       "      <td>3.9</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>11</th>\n",
+       "      <td>4.0</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>12</th>\n",
+       "      <td>4.0</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>13</th>\n",
+       "      <td>4.1</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>14</th>\n",
+       "      <td>4.5</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>15</th>\n",
+       "      <td>4.9</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>16</th>\n",
+       "      <td>5.1</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>17</th>\n",
+       "      <td>5.3</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>18</th>\n",
+       "      <td>5.9</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>19</th>\n",
+       "      <td>6.0</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>20</th>\n",
+       "      <td>6.8</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>21</th>\n",
+       "      <td>7.1</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>22</th>\n",
+       "      <td>7.9</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>23</th>\n",
+       "      <td>8.2</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>24</th>\n",
+       "      <td>8.7</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>25</th>\n",
+       "      <td>9.0</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>26</th>\n",
+       "      <td>9.5</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>27</th>\n",
+       "      <td>9.6</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>28</th>\n",
+       "      <td>10.3</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>29</th>\n",
+       "      <td>10.5</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "    YearsExperience\n",
+       "0               1.1\n",
+       "1               1.3\n",
+       "2               1.5\n",
+       "3               2.0\n",
+       "4               2.2\n",
+       "5               2.9\n",
+       "6               3.0\n",
+       "7               3.2\n",
+       "8               3.2\n",
+       "9               3.7\n",
+       "10              3.9\n",
+       "11              4.0\n",
+       "12              4.0\n",
+       "13              4.1\n",
+       "14              4.5\n",
+       "15              4.9\n",
+       "16              5.1\n",
+       "17              5.3\n",
+       "18              5.9\n",
+       "19              6.0\n",
+       "20              6.8\n",
+       "21              7.1\n",
+       "22              7.9\n",
+       "23              8.2\n",
+       "24              8.7\n",
+       "25              9.0\n",
+       "26              9.5\n",
+       "27              9.6\n",
+       "28             10.3\n",
+       "29             10.5"
+      ]
+     },
+     "execution_count": 18,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "x"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 22,
+   "id": "2945227f-6e5a-44a3-8dc0-4d980fe02d6e",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "y = df['Salary']"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 23,
+   "id": "96e46700-f611-4e1e-9ab1-8192bc9d88b1",
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "0      39343.0\n",
+       "1      46205.0\n",
+       "2      37731.0\n",
+       "3      43525.0\n",
+       "4      39891.0\n",
+       "5      56642.0\n",
+       "6      60150.0\n",
+       "7      54445.0\n",
+       "8      64445.0\n",
+       "9      57189.0\n",
+       "10     63218.0\n",
+       "11     55794.0\n",
+       "12     56957.0\n",
+       "13     57081.0\n",
+       "14     61111.0\n",
+       "15     67938.0\n",
+       "16     66029.0\n",
+       "17     83088.0\n",
+       "18     81363.0\n",
+       "19     93940.0\n",
+       "20     91738.0\n",
+       "21     98273.0\n",
+       "22    101302.0\n",
+       "23    113812.0\n",
+       "24    109431.0\n",
+       "25    105582.0\n",
+       "26    116969.0\n",
+       "27    112635.0\n",
+       "28    122391.0\n",
+       "29    121872.0\n",
+       "Name: Salary, dtype: float64"
+      ]
+     },
+     "execution_count": 23,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "y"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 24,
+   "id": "bfd1b356-9160-4ba2-87b5-1b24556849f4",
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead th {\n",
+       "        text-align: right;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr style=\"text-align: right;\">\n",
+       "      <th></th>\n",
+       "      <th>YearsExperience</th>\n",
+       "      <th>Salary</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>count</th>\n",
+       "      <td>30.000000</td>\n",
+       "      <td>30.000000</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>mean</th>\n",
+       "      <td>5.313333</td>\n",
+       "      <td>76003.000000</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>std</th>\n",
+       "      <td>2.837888</td>\n",
+       "      <td>27414.429785</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>min</th>\n",
+       "      <td>1.100000</td>\n",
+       "      <td>37731.000000</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>25%</th>\n",
+       "      <td>3.200000</td>\n",
+       "      <td>56720.750000</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>50%</th>\n",
+       "      <td>4.700000</td>\n",
+       "      <td>65237.000000</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>75%</th>\n",
+       "      <td>7.700000</td>\n",
+       "      <td>100544.750000</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>max</th>\n",
+       "      <td>10.500000</td>\n",
+       "      <td>122391.000000</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "       YearsExperience         Salary\n",
+       "count        30.000000      30.000000\n",
+       "mean          5.313333   76003.000000\n",
+       "std           2.837888   27414.429785\n",
+       "min           1.100000   37731.000000\n",
+       "25%           3.200000   56720.750000\n",
+       "50%           4.700000   65237.000000\n",
+       "75%           7.700000  100544.750000\n",
+       "max          10.500000  122391.000000"
+      ]
+     },
+     "execution_count": 24,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "df.describe()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 25,
+   "id": "0f50dcf5-3f54-4df6-ae23-484006c4c03f",
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "[    YearsExperience\n",
+       " 18              5.9\n",
+       " 13              4.1\n",
+       " 22              7.9\n",
+       " 7               3.2\n",
+       " 8               3.2\n",
+       " 12              4.0\n",
+       " 6               3.0\n",
+       " 10              3.9\n",
+       " 15              4.9\n",
+       " 25              9.0\n",
+       " 14              4.5\n",
+       " 17              5.3\n",
+       " 27              9.6\n",
+       " 21              7.1\n",
+       " 1               1.3\n",
+       " 28             10.3\n",
+       " 0               1.1\n",
+       " 29             10.5\n",
+       " 19              6.0\n",
+       " 20              6.8\n",
+       " 4               2.2\n",
+       " 3               2.0\n",
+       " 9               3.7\n",
+       " 11              4.0,\n",
+       "     YearsExperience\n",
+       " 16              5.1\n",
+       " 24              8.7\n",
+       " 2               1.5\n",
+       " 5               2.9\n",
+       " 26              9.5\n",
+       " 23              8.2,\n",
+       " 18     81363.0\n",
+       " 13     57081.0\n",
+       " 22    101302.0\n",
+       " 7      54445.0\n",
+       " 8      64445.0\n",
+       " 12     56957.0\n",
+       " 6      60150.0\n",
+       " 10     63218.0\n",
+       " 15     67938.0\n",
+       " 25    105582.0\n",
+       " 14     61111.0\n",
+       " 17     83088.0\n",
+       " 27    112635.0\n",
+       " 21     98273.0\n",
+       " 1      46205.0\n",
+       " 28    122391.0\n",
+       " 0      39343.0\n",
+       " 29    121872.0\n",
+       " 19     93940.0\n",
+       " 20     91738.0\n",
+       " 4      39891.0\n",
+       " 3      43525.0\n",
+       " 9      57189.0\n",
+       " 11     55794.0\n",
+       " Name: Salary, dtype: float64,\n",
+       " 16     66029.0\n",
+       " 24    109431.0\n",
+       " 2      37731.0\n",
+       " 5      56642.0\n",
+       " 26    116969.0\n",
+       " 23    113812.0\n",
+       " Name: Salary, dtype: float64]"
+      ]
+     },
+     "execution_count": 25,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "from sklearn.model_selection import train_test_split\n",
+    "train_test_split(x,y,test_size=0.2)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "db1b6f57-c205-4046-b10b-5dfeb7a5f9b1",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "from sklearn.model_selection import train_test_split\n",
+    "X_train,X_test,y_train,_test = train_test_split(x,y,test_size=0.2)"
+   ]
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python [conda env:base] *",
+   "language": "python",
+   "name": "conda-base-py"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.13.5"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 5
+}
